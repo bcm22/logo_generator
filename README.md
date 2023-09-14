@@ -32,8 +32,9 @@
 
   
   ## Usage
+[SVG-gen.webm](https://github.com/bcm22/logo_generator/assets/135455152/dda5dfc8-08c9-4bd9-bc00-a789b702186c)
 
-  .
+  
 
   ## Contributing
 
