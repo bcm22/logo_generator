@@ -1,14 +1,20 @@
 const inquirer = require('inquirer');
+
+// File system import
 const fs = require('fs');
-const { Triangle, Square, Circle } = require('./lib/shapes.js');
+
+// Shape classes from ./lib directory
+const { Triangle, Square, Circle } = require('./lib/shapes');
+
 
 function writeToFile(fileName, answers) {
-    let svgString = `
+    let svgString = "";
+    svgString = `
     <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-      <g>${answers.shape}`;
+    <g>${answers.shape}`;
 
     let shapeChoice;
-    if (answers.shape === "Triangle") {
+    if (answers.shape === 'Triangle') {
         shapeChoice = new Triangle();
         svgString += `<polygon points="150, 18 244, 182 56, 182" fill="${answers.shapeColor}"/>`;
     } else if (answers.shape === 'Square') {
@@ -19,7 +25,7 @@ function writeToFile(fileName, answers) {
         svgString += `<circle cx="150" cy="115" r="80" fill="${answers.shapeColor}"/>`;
     }
 
-    svgString += `<text x="150" y="130" text-anchor-"middle" font-size"40" fill="${answers.textColor}">${answers.text}</text>`;
+    svgString += `<text x="150" y="130" text-anchor="middle" font-size="40" fill="${answers.textColor}">${answers.text}</text>`;
     svgString += "</g></svg>";
 
     fs.writeFile(fileName, svgString, (err) => {
@@ -41,10 +47,10 @@ function promptUser() {
                 name: 'textColor',
             },
             {
-                type: 'input',
+                type: 'list',
                 message: 'What shape would you like to use for your logo?',
                 choices: ['Triangle', 'Square', 'Circle'],
-                name: 'Shape',
+                name: 'shape',
             },
             {
                 type: 'input',
